@@ -27,11 +27,11 @@ namespace CSC_455_As._2 {
 
 			return rand.Next(max) + 1;
 		}
-		public static void PrintDate () {
+		public static DateTime PrintDate () {
 			// print today's date in MM-DD-YYYY format
 			// this is my preferred method of printing the date
 
-			Console.WriteLine($"{DateTime.Now.ToString("MM-dd-yyyy")}");
+			return DateTime.Now;
 		}
 		public static List<string> DinoLister () {
 			Console.WriteLine("Please give me at least 10 Dinosaur names. Write <done> to finish:\n");
@@ -65,7 +65,7 @@ namespace CSC_455_As._2 {
 
 			return dinos;
 		}
-		public static void ClassFun () {
+		public static string ClassFun() {
 			// doing stuff with strings, so lets input one
 			Console.WriteLine("Please input a string:\n");
 			reader:
@@ -81,39 +81,28 @@ namespace CSC_455_As._2 {
 
 			switch (chooser) {
 				case 1:
-					Console.WriteLine($"Substring: {given.Substring(1, given.Length - 2)}");
-					break;
+					return $"Substring: {given.Substring(1, given.Length - 2)}";
 				case 2:
-					Console.WriteLine($"Reverse: {given.Reverse()}");
-					break;
+					return $"Reverse: {given.Reverse()}";
 				case 3:
-					Console.WriteLine($"Length: {given.Length}");
-					break;
+					return $"Length: {given.Length}";
 				case 4:
-					Console.WriteLine($"UpperCase: {given.ToUpper()}");
-					break;
+					return $"UpperCase: {given.ToUpper()}";
 				case 5:
-					Console.WriteLine($"StartsWith: {given[0]}");
-					break;
+					return $"StartsWith: {given[0]}";
 				case 6:
-					Console.WriteLine($"EndsWith: {given[given.Length - 1]}");
-					break;
+					return $"EndsWith: {given[given.Length - 1]}";
 				case 7:
-					Console.WriteLine($"Replaced s-z: {given.Replace("s", "z")}");
-					break;
+					return $"Replaced s-z: {given.Replace("s", "z")}";
 				case 8:
-					Console.WriteLine($"Split: {given.Substring(0, (given.Length - 1) / 2)}\n" +
-						$"{given.Substring((given.Length / 2) + 1, given.Length - 1)}");
-					break;
+					return $"Split: {given.Substring(0, (given.Length - 1) / 2)}\n" +
+						$"{given.Substring((given.Length / 2) + 1, given.Length - 1)}";
 				case 9:
-					Console.WriteLine($"Trimmed; {given.Trim()}");
-					break;
+					return $"Trimmed; {given.Trim()}";
 				case 10:
-					Console.WriteLine($"LowerCase: {given.ToLower()}");
-					break;
+					return $"LowerCase: {given.ToLower()}";
 				default: // if somehow, we get a number outside of 1-10. Error code 2
-					Console.WriteLine("Internal Error.\nCode: 2");
-					break;
+					return "Internal Error: code 2";
 			}
 		}
 	}
@@ -139,8 +128,8 @@ namespace CSC_455_As._2 {
 						Console.ReadLine();
 						break;
 					case 2: // today's date
-						MyFunctions.PrintDate();
-						Console.ReadLine();
+						DateTime todaysDate = MyFunctions.PrintDate();
+						Console.WriteLine($"{todaysDate.ToString("MM-dd-yyyy")}");
 						break;
 					case 3: // dinosaur list
 						List<string> sortedDinos = MyFunctions.DinoLister();
