@@ -43,10 +43,9 @@ namespace CSC_455_As._2 {
 
 			// thoroughness for the people -_-
 			while (locum != "done" && locum != "Done" && locum != "<done>" && locum != "<Done>") {
-				looper:
-				Console.WriteLine($"{counter}: ");
+				Console.WriteLine(counter + ": ");
 				locum = Console.ReadLine();
-				if (locum == "") {
+				if (locum.Length < 2) {
 					Console.WriteLine("Please input a name:\n");
 					continue;
 				}
@@ -54,7 +53,7 @@ namespace CSC_455_As._2 {
 				//make sure they give 10
 				if ((locum == "done" || locum == "Done" || locum == "<done>" || locum == "<Done>") && counter < 11) {
 					Console.WriteLine("Please complete the list.\n");
-					goto looper;
+					continue;
 				}
 				dinos.Add(locum);
 				counter++;
@@ -64,32 +63,33 @@ namespace CSC_455_As._2 {
 			var sortedDinos = dinos.OrderBy(dino => dino).ToList();
 
 			return dinos;
-		} // don't see a way to automate testing here
+		}
 		public static string ClassFun(string given) {
-			if (given.Length < 4) {
+			if (given == "" || given.Length < 4) {
 				return "Error: no usable data.\n";
 			}
 
+			int givenLength = given.Length;
 			int chooser = RandomNum(10); // random 1-10
 
 			switch (chooser) {
 				case 1:
-					return $"Substring: {given.Substring(1, given.Length - 2)}";
+					return $"Substring: {given.Substring(1, 3)}";
 				case 2:
 					return $"Reverse: {given.Reverse()}";
 				case 3:
-					return $"Length: {given.Length}";
+					return $"Length: {givenLength}";
 				case 4:
 					return $"UpperCase: {given.ToUpper()}";
 				case 5:
 					return $"StartsWith: {given[0]}";
 				case 6:
-					return $"EndsWith: {given[given.Length - 1]}";
+					return $"EndsWith: {given[givenLength - 1]}";
 				case 7:
 					return $"Replaced s-z: {given.Replace("s", "z")}";
 				case 8:
-					return $"Split: {given.Substring(0, (given.Length - 1) / 2)}\n" +
-						$"{given.Substring((given.Length / 2) + 1, given.Length - 1)}";
+					return $"Split: {given.Substring(0, (givenLength) / 2)}\n" +
+						$"{given.Substring((givenLength / 2) + 1)}";
 				case 9:
 					return $"Trimmed; {given.Trim()}";
 				case 10:
