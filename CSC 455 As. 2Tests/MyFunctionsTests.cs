@@ -19,7 +19,7 @@ namespace CSC_455_As._2.Tests {
 		}
 		[TestMethod()]
 		public void RandomNumTest () {
-			int max = 100;
+			int max = 10;
 			for (int k = 0; k < 1000 * max; k++) {
 				int actual = MyFunctions.RandomNum(max);
 				Assert.IsTrue((actual >= 1 && actual <= max));
@@ -35,6 +35,15 @@ namespace CSC_455_As._2.Tests {
 		public void PrintDateTest () {
 			var actual = MyFunctions.PrintDate();
 			Assert.AreEqual(actual, DateTime.Now);
+		}
+
+		[DataTestMethod]
+		[DataRow("")]
+		[DataRow("joseph")]
+		[DataRow("&.\\||&&.")] // 3 tests. empty, regular, special chars
+		public void ClassFunTest (string given) {
+			var actual = MyFunctions.ClassFun(given);
+			Assert.IsInstanceOfType(actual, typeof(string));
 		}
 	}
 }

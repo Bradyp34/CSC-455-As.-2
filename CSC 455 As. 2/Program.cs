@@ -68,18 +68,12 @@ namespace CSC_455_As._2 {
 			var sortedDinos = dinos.OrderBy(dino => dino).ToList();
 
 			return dinos;
-		}
-		public static string ClassFun() {
-			// doing stuff with strings, so lets input one
-			Console.WriteLine("Please input a string:\n");
-			reader:
-			var given = Console.ReadLine();
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-			if (given.Length < 4) {
+		} // don't see a good way to test this
+		public static string ClassFun(string given) {
+			while (given.Length < 4) {
 				Console.WriteLine("Please give a bigger string:\n");
-				goto reader;
+				given = Console.ReadLine();
 			}
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
 			int chooser = RandomNum(10); // random 1-10
 
@@ -145,7 +139,16 @@ namespace CSC_455_As._2 {
 						Console.ReadLine();
 						break;
 					case 4: // string class
-						string myString = MyFunctions.ClassFun();
+							// doing stuff with strings, so lets input one
+						Console.WriteLine("Please input a string:\n");
+						var given = Console.ReadLine();
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+						while (given.Length < 4) {
+							Console.WriteLine("Please give a bigger string:\n");
+							given = Console.ReadLine();
+						}
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+						string myString = MyFunctions.ClassFun(given);
 						Console.WriteLine($"{myString}");
 						Console.ReadLine();
 						break;
