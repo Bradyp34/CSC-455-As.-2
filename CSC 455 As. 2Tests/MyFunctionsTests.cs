@@ -34,7 +34,7 @@ namespace CSC_455_As._2.Tests {
 		[TestMethod()]
 		public void PrintDateTest () {
 			var actual = MyFunctions.PrintDate();
-			Assert.AreEqual(actual, DateTime.Now);
+			Assert.AreEqual(actual, DateTime.Now.ToString("MM-dd-yyyy"));
 		}
 
 		[DataTestMethod]

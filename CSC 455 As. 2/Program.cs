@@ -27,11 +27,11 @@ namespace CSC_455_As._2 {
 
 			return rand.Next(max) + 1;
 		}
-		public static DateTime PrintDate () {
+		public static string PrintDate () {
 			// print today's date in MM-DD-YYYY format
 			// this is my preferred method of printing the date
 
-			return DateTime.Now;
+			return DateTime.Now.ToString("MM-dd-yyyy");
 		}
 		public static List<string> DinoLister () {
 			Console.WriteLine("Please give me at least 10 Dinosaur names. Write <done> to finish:\n");
@@ -70,9 +70,9 @@ namespace CSC_455_As._2 {
 			return dinos;
 		} // don't see a good way to test this
 		public static string ClassFun(string given) {
-			while (given.Length < 4) {
-				Console.WriteLine("Please give a bigger string:\n");
-				given = Console.ReadLine();
+			int count = 0;
+			if (given.Length < 4) {
+				Console.WriteLine("Error: no usable data.\n");
 			}
 
 			int chooser = RandomNum(10); // random 1-10
@@ -126,8 +126,8 @@ namespace CSC_455_As._2 {
 						Console.ReadLine();
 						break;
 					case 2: // today's date
-						DateTime todaysDate = MyFunctions.PrintDate();
-						Console.WriteLine($"{todaysDate.ToString("MM-dd-yyyy")}");
+						string todaysDate = MyFunctions.PrintDate();
+						Console.WriteLine($"{todaysDate}");
 						break;
 					case 3: // dinosaur list
 						List<string> sortedDinos = MyFunctions.DinoLister();
