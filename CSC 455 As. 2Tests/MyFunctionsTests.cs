@@ -31,5 +31,10 @@ namespace CSC_455_As._2.Tests {
 			int actual = MyFunctions.RandomNum(max);
 			Assert.IsTrue(!(actual >= 1 && actual <= max));
 		}
+		[TestMethod()]
+		public void PrintDateTest () {
+			var actual = MyFunctions.PrintDate();
+			Assert.AreEqual(actual, DateTime.Now);
+		}
 	}
 }

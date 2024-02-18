@@ -48,6 +48,10 @@ namespace CSC_455_As._2 {
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 				locum = Console.ReadLine();
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+				if (locum == "") {
+					Console.WriteLine("Please input a name:\n");
+					continue;
+				}
 
 				//make sure they give 10
 				if ((locum == "done" || locum == "Done" || locum == "<done>" || locum == "<Done>") && counter < 11) {
