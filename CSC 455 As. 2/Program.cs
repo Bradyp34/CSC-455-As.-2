@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,7 +33,7 @@ namespace CSC_455_As._2 {
 
 			Console.WriteLine($"{DateTime.Now.ToString("MM-dd-yyyy")}");
 		}
-		public static void DinoLister () {
+		public static List<string> DinoLister () {
 			Console.WriteLine("Please give me at least 10 Dinosaur names. Write <done> to finish:\n");
 
 			// create list, temporary string, and counter for the user
@@ -62,13 +63,7 @@ namespace CSC_455_As._2 {
 
 			var sortedDinos = dinos.OrderBy(dino => dino).ToList();
 
-			// call the random number method
-			// repurpose the counter int, make sure the index is correct
-			counter = RandomNum(sortedDinos.Count) - 1;
-			if (counter < 1) {
-				Console.WriteLine("Error with RandomNum: negative maximum");
-			}
-			Console.WriteLine($"{sortedDinos[counter]}\n");
+			return dinos;
 		}
 		public static void ClassFun () {
 			// doing stuff with strings, so lets input one
@@ -82,9 +77,9 @@ namespace CSC_455_As._2 {
 			}
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-			int choser = RandomNum(10); // random 1-10
+			int chooser = RandomNum(10); // random 1-10
 
-			switch (choser) {
+			switch (chooser) {
 				case 1:
 					Console.WriteLine($"Substring: {given.Substring(1, given.Length - 2)}");
 					break;
@@ -121,37 +116,11 @@ namespace CSC_455_As._2 {
 					break;
 			}
 		}
-		public static void DoMenu (int choice) {
-			switch (choice) {
-				case 1: // print the random number
-					Console.WriteLine($"{RandomNum(10)}\n");
-					Console.ReadLine();
-					break;
-				case 2: // today's date
-					PrintDate();
-					Console.ReadLine();
-					break;
-				case 3: // dinosaur list
-					DinoLister();
-					Console.ReadLine();
-					break;
-				case 4: // string class
-					ClassFun();
-					Console.ReadLine();
-					break;
-				default: // if the choice was not valid
-					Console.WriteLine("Invalid choice.\n");
-					PrintMenu();
-					// this could potentially lead down a rabbit hole of returns
-					// however, since there is nothing after to process, this should be fine
-					break;
-			}
-		}
 	}
 	internal class Program {
 		static void Main (string[] args) {
 			Console.WriteLine(MyFunctions.PrintMenu()); // print 
-
+			
 			try {
 				int choice = 0;
 				var locum = Console.ReadLine();
@@ -164,7 +133,33 @@ namespace CSC_455_As._2 {
 				if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
 					Console.WriteLine("Please write one of the given numbers.\n");
 				}
-				MyFunctions.DoMenu(choice);
+				switch (choice) {
+					case 1: // print the random number
+						Console.WriteLine($"{MyFunctions.RandomNum(10)}\n");
+						Console.ReadLine();
+						break;
+					case 2: // today's date
+						MyFunctions.PrintDate();
+						Console.ReadLine();
+						break;
+					case 3: // dinosaur list
+						List<string> sortedDinos = MyFunctions.DinoLister();
+						int counter = MyFunctions.RandomNum(sortedDinos.Count) - 1;
+						if (counter < 1) {
+							Console.WriteLine("Error with RandomNum: negative maximum");
+						}
+						Console.WriteLine($"{sortedDinos[counter]}\n");
+						Console.ReadLine();
+						break;
+					case 4: // string class
+						MyFunctions.ClassFun();
+						Console.ReadLine();
+						break;
+					default: // if the choice was not valid
+						Console.WriteLine("Invalid choice.\n");
+						Console.ReadLine ();
+						break;
+				}
 			}
 			catch (Exception e) {
 				Console.Error.WriteLine("Error Code 1: " + e.Message + "\n");
