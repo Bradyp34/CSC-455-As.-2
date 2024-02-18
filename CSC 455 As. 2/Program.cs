@@ -141,7 +141,8 @@ namespace CSC_455_As._2 {
 						Console.ReadLine();
 						break;
 					case 4: // string class
-						MyFunctions.ClassFun();
+						string myString = MyFunctions.ClassFun();
+						Console.WriteLine($"{myString}");
 						Console.ReadLine();
 						break;
 					default: // if the choice was not valid
