@@ -45,9 +45,7 @@ namespace CSC_455_As._2 {
 			while (locum != "done" && locum != "Done" && locum != "<done>" && locum != "<Done>") {
 				looper:
 				Console.WriteLine($"{counter}: ");
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 				locum = Console.ReadLine();
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 				if (locum == "") {
 					Console.WriteLine("Please input a name:\n");
 					continue;
@@ -58,9 +56,7 @@ namespace CSC_455_As._2 {
 					Console.WriteLine("Please complete the list.\n");
 					goto looper;
 				}
-#pragma warning disable CS8604 // Possible null reference argument.
 				dinos.Add(locum);
-#pragma warning restore CS8604 // Possible null reference argument.
 				counter++;
 			}
 			Console.WriteLine("\n");
@@ -68,11 +64,10 @@ namespace CSC_455_As._2 {
 			var sortedDinos = dinos.OrderBy(dino => dino).ToList();
 
 			return dinos;
-		} // don't see a good way to test this
+		} // don't see a way to automate testing here
 		public static string ClassFun(string given) {
-			int count = 0;
 			if (given.Length < 4) {
-				Console.WriteLine("Error: no usable data.\n");
+				return "Error: no usable data.\n";
 			}
 
 			int chooser = RandomNum(10); // random 1-10
@@ -105,7 +100,7 @@ namespace CSC_455_As._2 {
 		}
 	}
 	internal class Program {
-		static void Main (string[] args) {
+		static void Main () {
 			Console.WriteLine(MyFunctions.PrintMenu()); // print 
 			
 			try {
@@ -142,12 +137,10 @@ namespace CSC_455_As._2 {
 							// doing stuff with strings, so lets input one
 						Console.WriteLine("Please input a string:\n");
 						var given = Console.ReadLine();
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
 						while (given.Length < 4) {
 							Console.WriteLine("Please give a bigger string:\n");
 							given = Console.ReadLine();
 						}
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 						string myString = MyFunctions.ClassFun(given);
 						Console.WriteLine($"{myString}");
 						Console.ReadLine();
